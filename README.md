@@ -1,6 +1,6 @@
 # OpenShift template for Vert.x applications
 
-Template for running Vert.x applications on OpenShift
+Template for running [Vert.x](https://github.com/purplefox/vert.x) applications on OpenShift
 
 Vert.x requires JDK7 ... that is not available on OpenShift. **See Legal section below. Is there any other distribution?**
 
