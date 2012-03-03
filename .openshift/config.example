@@ -1,0 +1,13 @@
+JAVA_VERSION="jdk1.7.0_03"
+JAVA_URL="http://download.oracle.com/otn-pub/java/jdk/7u3-b04/jdk-7u3-linux-x64.tar.gz"
+VERTX_VERSION="1.0.beta1"
+JRUBY_VERSION="1.6.7"
+
+export JAVA_HOME="${OPENSHIFT_DATA_DIR}${JAVA_VERSION}"
+export JRUBY_HOME="${OPENSHIFT_DATA_DIR}jruby-$JRUBY_VERSION"
+
+PATH="${OPENSHIFT_DATA_DIR}${JAVA_VERSION}/bin:$PATH"
+PATH="${OPENSHIFT_DATA_DIR}vert.x-${VERTX_VERSION}/bin:$PATH"
+PATH="${OPENSHIFT_DATA_DIR}jruby-$JRUBY_VERSION/bin:$PATH"
+
+SERVER_FILE="server.rb"

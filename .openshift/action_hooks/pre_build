@@ -1,0 +1,59 @@
+#!/bin/bash
+
+. "${OPENSHIFT_REPO_DIR}.openshift/config"
+
+cd $OPENSHIFT_DATA_DIR
+
+if [[ -d ${JAVA_VERSION} ]]; then
+	echo "Java $JAVA_VERSION already installed."
+else
+	for version in jdk*; do 
+		echo "Removing $version"
+		rm -rf $version 
+	done
+
+	echo "Installing Java $JAVA_VERSION"
+
+	curl -o jdk-download.tar.gz "$JAVA_URL"
+	tar -xf jdk-download.tar.gz
+	rm jdk-download.tar.gz
+fi
+
+if [[ -d jruby-$JRUBY_VERSION ]]; then
+	echo "JRuby already installed."
+else
+
+	for version in jruby-*; do 
+		echo "Removing $version"
+		rm -rf $version 
+	done
+
+	if [[ -e "Gemfile.hsh" ]]; then
+		echo "Removing Gemfile hash"
+		rm "Gemfile.hsh"
+	fi
+
+	echo "Installing JRuby $JRUBY_VERSION"
+
+	curl -o jruby-bin-$JRUBY_VERSION.tar.gz "http://jruby.org.s3.amazonaws.com/downloads/$JRUBY_VERSION/jruby-bin-$JRUBY_VERSION.tar.gz"
+	tar -xf jruby-bin-$JRUBY_VERSION.tar.gz
+	rm jruby-bin-$JRUBY_VERSION.tar.gz
+
+	jruby -S gem install bundler json
+fi
+
+if [[ -d vert.x-${VERTX_VERSION} ]]; then
+	echo "Vert.x ${VERTX_VERSION} already installed."
+else
+	for version in vert.x-*; do 
+		echo "Removing $version"
+		rm -rf $version 
+	done
+
+	echo "Installing Vert.x $VERTX_VERSION"
+
+	echo " Downloading https://cloud.github.com/downloads/purplefox/vert.x/vert.x-${VERTX_VERSION}.tar.gz"
+	curl --insecure -o vert.x-${VERTX_VERSION}.tar.gz "https://cloud.github.com/downloads/purplefox/vert.x/vert.x-${VERTX_VERSION}.tar.gz"
+	tar -xf vert.x-${VERTX_VERSION}.tar.gz
+	rm vert.x-${VERTX_VERSION}.tar.gz
+fi
