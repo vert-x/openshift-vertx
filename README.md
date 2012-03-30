@@ -15,7 +15,7 @@ Vert.x requires JDK7 ... that is not available on OpenShift. **See Legal section
 
 Create OpenShift application
 
-	rhc app create -a $name -t raw-0.1
+	rhc app create -a $name -t diy-0.1
 
 and enter the directory
 
