@@ -4,22 +4,6 @@ cd $OPENSHIFT_REPO_DIR
 
 . ".openshift/config"
 
-if [[ -e Gemfile ]]; then
-	ahash=`sha1sum Gemfile`
-	if [[ -e "${OPENSHIFT_DATA_DIR}Gemfile.hsh" ]]; then
-		ohash=`cat ${OPENSHIFT_DATA_DIR}Gemfile.hsh`
-	else
-		ohash=''
-	fi
-
-	if [[ "$ahash" == "$ohash" ]]; then
-		echo "No change in Gemfile"
-	else
-		jruby -S bundle install
-		echo "$ahash" > ${OPENSHIFT_DATA_DIR}Gemfile.hsh
-	fi
-fi
-
 echo "Starting Vert.x application!"
 
 if [[ -e $SERVER_FILE ]]; then
