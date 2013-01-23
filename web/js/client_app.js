@@ -19,7 +19,7 @@
   var that = this;
   var options = {
     debug: true,
-    protocols_whitelist: [//'websocket',
+    protocols_whitelist: [ 'websocket',
                           'xdr-streaming', 'xhr-streaming', 'iframe-eventsource', 'iframe-htmlfile',
                           'xdr-polling', 'xhr-polling', 'iframe-xhr-polling', 'jsonp-polling']
   }
