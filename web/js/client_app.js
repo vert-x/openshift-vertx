@@ -17,7 +17,12 @@
 (function DemoViewModel() {
 
   var that = this;
-  var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+  var options = {
+    protocols_whitelist: [//'websocket',
+                          'xdr-streaming', 'xhr-streaming', 'iframe-eventsource', 'iframe-htmlfile',
+                          'xdr-polling', 'xhr-polling', 'iframe-xhr-polling', 'jsonp-polling']
+  }
+  var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus', options);
   that.items = ko.observableArray([]);
 
   eb.onopen = function() {
