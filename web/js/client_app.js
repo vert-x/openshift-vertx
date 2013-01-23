@@ -23,8 +23,7 @@
                           'xdr-streaming', 'xhr-streaming', 'iframe-eventsource', 'iframe-htmlfile',
                           'xdr-polling', 'xhr-polling', 'iframe-xhr-polling', 'jsonp-polling']
   }
-  //var theurl = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus';
-  var theurl = window.location.protocol + '//' + window.location.hostname + ':8443' + '/eventbus';
+  var theurl = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus';
   console.log("url is " +theurl);
   var eb = new vertx.EventBus(theurl, options);
   that.items = ko.observableArray([]);
