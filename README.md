@@ -7,6 +7,10 @@ Template for running [Vert.x](https://github.com/purplefox/vert.x) applications 
 * Installs Vert.x if needed
 * Starts application process from $SERVER_FILE
 
+## Configure
+
+Configure Vert.x version etc in .openshift/config.example
+
 ## How to start
 
 Create OpenShift application
@@ -34,9 +38,4 @@ Now, your application is available at
 
 	http://$name-$namespace.rhcloud.com
 
-## Legal
-
-This template downloads Oracle's JDK, by using this template you have to **agree with Oracle's license agreement**
-
-	http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
