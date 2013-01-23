@@ -2,13 +2,9 @@
 
 Template for running [Vert.x](https://github.com/purplefox/vert.x) applications on OpenShift
 
-Vert.x requires JDK7 ... that is not available on OpenShift. **See Legal section below. Is there any other distribution?**
-
 ## What it does?
 
-* Installs JDK7 if needed
 * Installs Vert.x if needed
-* Installs JRuby if needed
 * Starts application process from $SERVER_FILE
 
 ## How to start
@@ -29,10 +25,6 @@ and pull locally
 
 	git pull -s recursive -X theirs template master
 
-configure your application
-
-	cp .openshift/config.example .openshift/config
-	$EDITOR .openshift/config
 
 and deploy to OpenShift
 
