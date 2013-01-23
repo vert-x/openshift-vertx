@@ -2,4 +2,4 @@ VERTX_VERSION="1.3.1.final"
 
 PATH="${OPENSHIFT_DATA_DIR}vert.x-${VERTX_VERSION}/bin:$PATH"
 
-SERVER_FILE="server.js"
+SERVER_FILE="app.js"
