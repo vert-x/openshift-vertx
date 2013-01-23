@@ -2,7 +2,7 @@
 
 cd $OPENSHIFT_REPO_DIR
 
-. ".openshift/config"
+. ".openshift/config.example"
 
 echo "Starting Vert.x application!"
 
