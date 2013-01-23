@@ -32,6 +32,7 @@
 
     // Get the static data
 
+
     console.log("requesting mongo data");
 
     eb.send('vertx.mongopersistor', {action: 'find', collection: 'albums', matcher: {} },
