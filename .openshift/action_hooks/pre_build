@@ -4,6 +4,8 @@
 
 cd $OPENSHIFT_DATA_DIR
 
+# Install Vert.x if needed
+
 if [[ -d vert.x-${VERTX_VERSION} ]]; then
 	echo "Vert.x ${VERTX_VERSION} already installed."
 else
@@ -19,3 +21,27 @@ else
 	tar -xf vert.x-${VERTX_VERSION}.tar.gz
 	rm vert.x-${VERTX_VERSION}.tar.gz
 fi
+
+# Install JRuby if needed
+
+http://jruby.org.s3.amazonaws.com/downloads/1.7.2/jruby-bin-1.7.2.tar.gz
+
+if [[ -d jruby-${JRUBY_VERSION} ]]; then
+	echo "Vert.x ${JRUBY_VERSION} already installed."
+else
+	for version in jruby-*; do
+		echo "Removing $version"
+		rm -rf $version
+	done
+
+	echo "Installing JRuby $JRUBY_VERSION"
+
+  echo " Downloading http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
+	curl --insecure -o jruby-${JRUBY_VERSION}.tar.gz "http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
+	tar -xf jruby-${JRUBY_VERSION}.tar.gz
+	rm jruby-${JRUBY_VERSION}.tar.gz
+fi
+
+
+
+

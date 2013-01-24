@@ -54,4 +54,12 @@ Now, your application is available at
 
 e.g. https://openshiftvertx-purplefox.rhcloud.com/
 
+## Notes for Ruby, Python
+
+If you want to write Ruby or Python applications with Vert.x you will have to install
+JRuby and/or Jython in your application and set the env vars JRUBY_HOME and JYTHON_HOME to point
+to those installations.
+
+Take a look how we install vert.x in the script .openshift/action_hooks/pre_build for an idea of how to do that.
+
 
