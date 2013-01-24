@@ -16,7 +16,7 @@ var webServerConf = {
 
   port: parseInt(vertx.env['OPENSHIFT_INTERNAL_PORT']),
   host: vertx.env['OPENSHIFT_INTERNAL_IP'],
-  ssl: false,
+  ssl: false, // OpenShift handles SSL for us
 
   // Configuration for the event bus client side bridge
   // This bridges messages from the client side to the server side event bus
