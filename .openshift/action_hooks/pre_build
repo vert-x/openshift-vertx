@@ -25,7 +25,7 @@ fi
 # Install JRuby if needed
 
 if [[ -d jruby-${JRUBY_VERSION} ]]; then
-	echo "Vert.x ${JRUBY_VERSION} already installed."
+	echo "JRuby ${JRUBY_VERSION} already installed."
 else
 	for version in jruby-*; do
 		echo "Removing $version"
