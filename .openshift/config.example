@@ -5,4 +5,5 @@ PATH="${OPENSHIFT_DATA_DIR}vert.x-${VERTX_VERSION}/bin:$PATH"
 
 export JRUBY_HOME=${OPENSHIFT_DATA_DIR}jruby-${JRUBY_VERSION}
 
-SERVER_FILE="js_example/app.js"
+SERVER_FILE="app.js"
+EXAMPLE_DIR="js_example"

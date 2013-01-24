@@ -4,6 +4,8 @@ cd $OPENSHIFT_REPO_DIR
 
 . ".openshift/config.example"
 
+cd $EXAMPLE_DIR
+
 echo "Starting Vert.x application!"
 
 if [[ -e $SERVER_FILE ]]; then
