@@ -4,29 +4,39 @@ Template for running [Vert.x](https://github.com/purplefox/vert.x) applications 
 
 ## What it does?
 
-* Installs Vert.x if needed
-* Starts application process from $SERVER_FILE
 * The demo currently runs the Vert.x webapp demo - which is a shop webapp that uses MongoDB at the back-end
 
-## Configure
+## Configuration
 
-Configure Vert.x version etc in .openshift/config.example
+is in .openshift/config.example
 
-## How to start
+## Lifecycle hooks
+
+are in .openshift/action_hooks
+
+## All the rest of the stuff
+
+Is the webapp demo from the Vert.x distro
+
+Replace this with your app and update $SERVER_FILE on config.example
+
+## How to create your app (with name $name)
 
 Create OpenShift application
 
 	rhc app create -a $name -t diy-0.1
 
-Add MongoDB
+Add MongoDB (if you need it - the webapp demo does, otherwise don't bother)
 
 	rhc cartridge add mongodb -a $name
+
+This will create a new git repo for your application
 
 and enter the directory
 
 	cd $name
 
-Add this repository as new remote
+Add _this_ repository as new remote
 
 	git remote add template -m master git://github.com/purplefox/openshift-vertx.git
 
@@ -41,5 +51,7 @@ and deploy to OpenShift
 Now, your application is available at
 
 	http://$name-$namespace.rhcloud.com
+
+e.g. https://openshiftvertx-purplefox.rhcloud.com/
 
 
