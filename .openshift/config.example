@@ -3,6 +3,6 @@ JRUBY_VERSION="1.7.2"
 
 PATH="${OPENSHIFT_DATA_DIR}vert.x-${VERTX_VERSION}/bin:$PATH"
 
-SERVER_FILE="rb_example/http_server.rb"
-
 export JRUBY_HOME=${OPENSHIFT_DATA_DIR}jruby-${JRUBY_VERSION}
+
+SERVER_FILE="js_example/app.js"

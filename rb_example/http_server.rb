@@ -16,5 +16,5 @@ require "vertx"
 include Vertx
 
 HttpServer.new.request_handler do |req|
-  req.response.end("<html><body><h1>Hello from vert.x!</h1></body></html>")
+  req.response.end("<html><body><h1>Hello from vert.x Ruby!</h1></body></html>")
 end.listen(Integer(ENV['OPENSHIFT_INTERNAL_PORT']), ENV['OPENSHIFT_INTERNAL_IP'])
