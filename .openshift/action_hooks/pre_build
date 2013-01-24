@@ -24,8 +24,6 @@ fi
 
 # Install JRuby if needed
 
-http://jruby.org.s3.amazonaws.com/downloads/1.7.2/jruby-bin-1.7.2.tar.gz
-
 if [[ -d jruby-${JRUBY_VERSION} ]]; then
 	echo "Vert.x ${JRUBY_VERSION} already installed."
 else
