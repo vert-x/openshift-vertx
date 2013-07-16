@@ -9,8 +9,7 @@ cd $EXAMPLE_DIR
 echo "Starting Vert.x application!"
 
 if [[ -e $SERVER_FILE ]]; then
-	nohup bash -c "exec 'vertx' 'run' '${SERVER_FILE}' &> ${OPENSHIFT_LOG_DIR}vert.x.log" &> /dev/null &
-	echo $! > .openshift/application.pid
+	nohup bash -c "exec 'vertx' 'run' '${SERVER_FILE}' '-repo' 'vert-x.github.io' &> ${OPENSHIFT_DIY_LOG_DIR}vert.x.log" &> /dev/null &
 else
 	echo "Server file does not exists."
 fi
