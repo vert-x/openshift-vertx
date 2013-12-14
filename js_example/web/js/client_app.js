@@ -17,28 +17,16 @@
 (function DemoViewModel() {
 
   var that = this;
-  var options = {
-    debug: true,
-    protocols_whitelist: [ 'websocket',
-                          'xdr-streaming', 'xhr-streaming', 'iframe-eventsource', 'iframe-htmlfile',
-                          'xdr-polling', 'xhr-polling', 'iframe-xhr-polling', 'jsonp-polling']
-  }
-  var theurl = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus';
-  console.log("url is " +theurl);
-  var eb = new vertx.EventBus(theurl, options);
+  var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
   that.items = ko.observableArray([]);
 
   eb.onopen = function() {
 
     // Get the static data
 
-
-    console.log("requesting mongo data");
-
     eb.send('vertx.mongopersistor', {action: 'find', collection: 'albums', matcher: {} },
       function(reply) {
         if (reply.status === 'ok') {
-          console.log("got mongo data");
           var albumArray = [];
           for (var i = 0; i < reply.results.length; i++) {
             albumArray[i] = new Album(reply.results[i]);
@@ -82,7 +70,7 @@
   });
 
   that.orderReady = ko.computed(function() {
-    var or =  that.items().length > 0 && that.sessionID() != '';
+    var or =  that.items().length > 0 && that.loggedIn;
     return or;
   });
 
@@ -96,7 +84,6 @@
 
     var orderItems = ko.toJS(that.items);
     var orderMsg = {
-      sessionID: that.sessionID(),
       action: "save",
       collection: "orders",
       document: {
@@ -118,13 +105,13 @@
 
   that.username = ko.observable('');
   that.password = ko.observable('');
-  that.sessionID = ko.observable('');
+  that.loggedIn = ko.observable(false);
 
   that.login = function() {
     if (that.username().trim() != '' && that.password().trim() != '') {
-      eb.send('vertx.basicauthmanager.login', {username: that.username(), password: that.password()}, function (reply) {
+      eb.login(that.username(), that.password(), function (reply) {
         if (reply.status === 'ok') {
-          that.sessionID(reply.sessionID);
+          that.loggedIn(true);
         } else {
           alert('invalid login');
         }

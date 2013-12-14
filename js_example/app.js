@@ -3,7 +3,9 @@ This verticle contains the configuration for our application and co-ordinates
 start-up of the verticles that make up the application.
  */
 
-load('vertx.js');
+var container = require('vertx/container');
+
+var console = require('vertx/console');
 
 // Our application config - you can maintain it here or alternatively you could
 // stick it in a conf.json text file and specify that on the command line when
@@ -14,9 +16,9 @@ var webServerConf = {
 
   // Normal web server stuff
 
-  port: parseInt(vertx.env['OPENSHIFT_INTERNAL_PORT']),
-  host: vertx.env['OPENSHIFT_INTERNAL_IP'],
-  ssl: false, // OpenShift handles SSL for us
+  port: parseInt(vertx.env['OPENSHIFT_DIY_PORT']),
+  host: vertx.env['OPENSHIFT_DIY_IP'],
+  ssl: true,
 
   // Configuration for the event bus client side bridge
   // This bridges messages from the client side to the server side event bus
@@ -66,19 +68,21 @@ var mongoConf = {
   db_name: vertx.env['OPENSHIFT_APP_NAME']
 }
 
-vertx.deployModule('vertx.mongo-persistor-v1.2', mongoConf, 1, function() {
+container.deployModule('io.vertx~mod-mongo-persistor~2.0.0-final', mongoConf, 1, function(err, deployID) {
 
   // And when it's deployed run a script to load it with some reference
   // data for the demo
-  load('static_data.js');
-
-  console.log("Static data loaded");
+  if (!err) {
+    load('static_data.js');
+  } else {
+    err.printStackTrace();
+  }
 });
 
 // Deploy an auth manager to handle the authentication
 
-vertx.deployModule('vertx.auth-mgr-v1.1');
+container.deployModule('io.vertx~mod-auth-mgr~2.0.0-final');
 
 // Start the web server, with the config we defined above
 
-vertx.deployModule('vertx.web-server-v1.0', webServerConf);
+container.deployModule('io.vertx~mod-web-server~2.0.0-final', webServerConf);

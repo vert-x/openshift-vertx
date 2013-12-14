@@ -16,7 +16,7 @@ else
 
 	echo "Installing Vert.x $VERTX_VERSION"
 
-  echo " Downloading http://vertx.io/downloads/vert.x-${VERTX_VERSION}.tar.gz"
+  echo " Downloading http://dl.bintray.com/vertx/downloads/vert.x-${VERTX_VERSION}.tar.gz"
 	curl --insecure -o vert.x-${VERTX_VERSION}.tar.gz "http://vertx.io/downloads/vert.x-${VERTX_VERSION}.tar.gz"
 	tar -xf vert.x-${VERTX_VERSION}.tar.gz
 	rm vert.x-${VERTX_VERSION}.tar.gz
@@ -24,39 +24,39 @@ fi
 
 # Install JRuby if needed - you can comment this out if you don't use Ruby
 
-if [[ -d jruby-${JRUBY_VERSION} ]]; then
-	echo "JRuby ${JRUBY_VERSION} already installed."
-else
-	for version in jruby-*; do
-		echo "Removing $version"
-		rm -rf $version
-	done
-
-	echo "Installing JRuby $JRUBY_VERSION"
-
-  echo " Downloading http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
-	curl --insecure -o jruby-${JRUBY_VERSION}.tar.gz "http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
-	tar -xf jruby-${JRUBY_VERSION}.tar.gz
-	rm jruby-${JRUBY_VERSION}.tar.gz
-fi
+#if [[ -d jruby-${JRUBY_VERSION} ]]; then
+#	echo "JRuby ${JRUBY_VERSION} already installed."
+#else
+#	for version in jruby-*; do
+#		echo "Removing $version"
+#		rm -rf $version
+#	done
+#
+#	echo "Installing JRuby $JRUBY_VERSION"
+#
+#  echo " Downloading http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
+#	curl --insecure -o jruby-${JRUBY_VERSION}.tar.gz "http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
+#	tar -xf jruby-${JRUBY_VERSION}.tar.gz
+#	rm jruby-${JRUBY_VERSION}.tar.gz
+#fi
 
 # Install Jython if needed - you can comment this out if you don't use Python
 
-if [[ -d jruby-${JRUBY_VERSION} ]]; then
-	echo "JRuby ${JRUBY_VERSION} already installed."
-else
-	for version in jruby-*; do
-		echo "Removing $version"
-		rm -rf $version
-	done
-
-	echo "Installing JRuby $JRUBY_VERSION"
-
-  echo " Downloading http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
-	curl --insecure -o jruby-${JRUBY_VERSION}.tar.gz "http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
-	tar -xf jruby-${JRUBY_VERSION}.tar.gz
-	rm jruby-${JRUBY_VERSION}.tar.gz
-fi
+#if [[ -d jruby-${JRUBY_VERSION} ]]; then
+#	echo "JRuby ${JRUBY_VERSION} already installed."
+#else
+#	for version in jruby-*; do
+#		echo "Removing $version"
+#		rm -rf $version
+#	done
+#
+#	echo "Installing JRuby $JRUBY_VERSION"
+#
+#  echo " Downloading http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
+#	curl --insecure -o jruby-${JRUBY_VERSION}.tar.gz "http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz"
+#	tar -xf jruby-${JRUBY_VERSION}.tar.gz
+#	rm jruby-${JRUBY_VERSION}.tar.gz
+#fi
 
 
 
