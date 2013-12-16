@@ -22,37 +22,9 @@ Replace this with your app and update $SERVER_FILE on config.example
 
 ## How to create your app (with name $name)
 
-Create OpenShift application
+Create a DIY OpenShift app with MongoDB and load this repo automatically
 
-	rhc app create -a $name -t diy-0.1
-
-Add MongoDB (if you need it - the webapp demo does, otherwise don't bother)
-
-	rhc cartridge add mongodb -a $name
-
-This will create a new git repo for your application
-
-and enter the directory
-
-	cd $name
-
-Add _this_ repository as new remote
-
-	git remote add template -m master git://github.com/purplefox/openshift-vertx.git
-
-and pull locally
-
-	git pull -s recursive -X theirs template master
-
-and deploy to OpenShift
-
-	git push origin master
-
-Now, your application is available at
-
-	http://$name-$namespace.rhcloud.com
-
-e.g. https://openshiftvertx-purplefox.rhcloud.com/
+	rhc create-app $name diy-0.1 mongodb-2.2 --from-code=https://github.com/fabianofranz/openshift-vertx.git
 
 ## Notes for Ruby, Python
 
