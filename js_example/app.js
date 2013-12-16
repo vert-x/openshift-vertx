@@ -12,13 +12,14 @@ var console = require('vertx/console');
 // starting this verticle
 
 // Configuration for the web server
+
 var webServerConf = {
 
   // Normal web server stuff
 
-  port: parseInt(container.env['OPENSHIFT_DIY_PORT']),
-  host: container.env['OPENSHIFT_DIY_IP'],
-  ssl: true,
+  port: parseInt(container.env.get('OPENSHIFT_DIY_PORT')),
+  host: container.env.get('OPENSHIFT_DIY_IP'),
+  ssl: false,
 
   // Configuration for the event bus client side bridge
   // This bridges messages from the client side to the server side event bus
@@ -61,11 +62,11 @@ var webServerConf = {
 // Deploy a MongoDB persistor module
 
 var mongoConf = {
-  host: container.env['OPENSHIFT_MONGODB_DB_HOST'],
-  port: parseInt(container.env['OPENSHIFT_MONGODB_DB_PORT']),
-  username: container.env['OPENSHIFT_MONGODB_DB_USERNAME'],
-  password: container.env['OPENSHIFT_MONGODB_DB_PASSWORD'],
-  db_name: container.env['OPENSHIFT_APP_NAME']
+  host: container.env.get('OPENSHIFT_MONGODB_DB_HOST'),
+  port: parseInt(container.env.get('OPENSHIFT_MONGODB_DB_PORT')),
+  username: container.env.get('OPENSHIFT_MONGODB_DB_USERNAME'),
+  password: container.env.get('OPENSHIFT_MONGODB_DB_PASSWORD'),
+  db_name: container.env.get('OPENSHIFT_APP_NAME')
 }
 
 container.deployModule('io.vertx~mod-mongo-persistor~2.0.0-final', mongoConf, 1, function(err, deployID) {
@@ -75,7 +76,7 @@ container.deployModule('io.vertx~mod-mongo-persistor~2.0.0-final', mongoConf, 1,
   if (!err) {
     load('static_data.js');
   } else {
-    err.printStackTrace();
+    //err.printStackTrace();
   }
 });
 
